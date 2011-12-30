@@ -63,7 +63,7 @@ function get_server_name()
   $communs = array_intersect($get, $folder);
   $base = implode('/', $communs);
   $url_composee = STUDS_URL ;
-  if ( STUDS_DIR ) { $url_composee .= "/" . STUDS_URL ; } ;
+  if ( STUDS_DIR ) { $url_composee .= "/" . STUDS_DIR ; } ;
   $url = sprintf("%s://%s%s", $scheme, $url_composee, $base);
   
   if (!preg_match("|/$|", $url)) {
