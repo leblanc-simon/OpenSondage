@@ -314,17 +314,34 @@ if (isset($_POST["confirmesuppression"]) || isset($_POST["confirmesuppression_x"
   $date=date('H:i:s d/m/Y:');
 
   //destruction des données dans la base SQL
-  $sql = 'DELETE s, su, u, c
-          FROM
-            sondage s LEFT JOIN sujet_studs su
-              ON su.id_sondage = s.id_sondage
-            LEFT JOIN user_studs u
-              ON u.id_sondage = s.id_sondage
-            LEFT JOIN comments c
-              ON c.id_sondage = s.id_sondage
-          WHERE s.id_sondage = '.$connect->Param('numsondage');
-  $sql = $connect->Prepare($sql);
-  if ($connect->Execute($sql, array($numsondage))) {
+  $sql = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('numsondage') . '; ' .
+         'DELETE FROM user_studs  WHERE id_sondage = ' . $connect->Param('numsondage') . '; ' .
+         'DELETE FROM comments    WHERE id_sondage = ' . $connect->Param('numsondage') . '; ' .
+         'DELETE FROM sondage     WHERE id_sondage = ' . $connect->Param('numsondage') ;
+
+  $connect->StartTrans();
+
+  $req = 'DELETE FROM sondage     WHERE id_sondage = ' . $connect->Param('numsondage') ;
+  $sql = $connect->Prepare($req);
+  $connect->Execute($sql, array($numsondage));
+
+  $req = 'DELETE FROM sujet_studs WHERE id_sondage = ' . $connect->Param('numsondage') ;
+  $sql = $connect->Prepare($req);
+  $connect->Execute($sql, array($numsondage));
+
+  $req = 'DELETE FROM user_studs  WHERE id_sondage = ' . $connect->Param('numsondage') ;
+  $sql = $connect->Prepare($req);
+  $connect->Execute($sql, array($numsondage));
+
+  $req = 'DELETE FROM comments    WHERE id_sondage = ' . $connect->Param('numsondage') ;
+  $sql = $connect->Prepare($req);
+  $connect->Execute($sql, array($numsondage));
+
+  $suppression_OK = ! $connect->HasFailedTrans() ;
+  $connect->CompleteTrans();
+
+
+  if ( $suppression_OK ) {
     // on ecrit dans le fichier de logs la suppression du sondage
     error_log($date . " SUPPRESSION: $dsondage->id_sondage\t$dsondage->format\t$dsondage->nom_admin\t$dsondage->mail_admin\n", 3, 'admin/logs_studs.txt');
   
