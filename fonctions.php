@@ -62,7 +62,9 @@ function get_server_name()
   $folder = explode('/', str_replace('\\', '/', dirname(__FILE__)));
   $communs = array_intersect($get, $folder);
   $base = implode('/', $communs);
-  $url = sprintf("%s://%s%s", $scheme, STUDS_URL, $base);
+  $url_composee = STUDS_URL ;
+  if ( STUDS_DIR ) { $url_composee .= "/" . STUDS_DIR ; } ;
+  $url = sprintf("%s://%s%s", $scheme, $url_composee, $base);
   
   if (!preg_match("|/$|", $url)) {
     $url = $url."/";

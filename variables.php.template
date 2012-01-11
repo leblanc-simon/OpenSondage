@@ -42,7 +42,7 @@ define('STUDS_URL', 'www.mon_domaine.coop');
 
 // Répertoire sous lequel se trouve Studs
 // Utilise la racine du serveur telle que définie par STUDS_URL si laissé vide
-define('STUDS_DIR', 'mes_sondages/');
+define('STUDS_DIR', 'mes_sondages');
 
 // Nom de l'application
 define('NOMAPPLICATION', "<nom de l'application>");
