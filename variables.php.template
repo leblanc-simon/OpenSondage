@@ -47,29 +47,29 @@ define('NOMAPPLICATION', "<nom de l'application>");
 define('ADRESSEMAILADMIN', '<adresse mail>');
 
 // nom de la base de donnees
-define('BASE', '<nom de la base de données>');
+define('BASE', 'sondage');
 
 // nom de l'utilisateur de la base
-define('USERBASE', "<nom de l'utilisateur>");
+define('USERBASE', "sondage");
 
 // passwd de l'utilisateur de la base
 define('USERPASSWD', '<mot de passe>');
 
 // nom du serveur de base de donnees, laisser vide pour utiliser un socket
-define('SERVEURBASE', '<nom du serveur avec domaine>');
+define('SERVEURBASE', '');
 
 // Type de base de données à utiliser (mysql, postgres, ...)
 // http://phplens.com/lens/adodb/docs-adodb.htm#drivers
-define('BASE_TYPE', '<type de BDD>');
+define('BASE_TYPE', 'mysql');
 
 // Langue par défaut de l'application (à choisir dans $ALLOWED_LANGUAGES)
 define('LANGUE', 'fr_FR');
 
 // Nom et emplacement du logo
-define('LOGOBANDEAU', '<chemin relatif suivi du nom du fichier du logo pour le bandeau>');
+//define('LOGOBANDEAU', '<chemin relatif suivi du nom du fichier du logo pour le bandeau>');
 
 // Nom et emplacement du logo de la lettre générée en PDF
-define('LOGOLETTRE', '<chemin relatif suivi du nom du fichier du logo pour la lettre>');
+//define('LOGOLETTRE', '<chemin relatif suivi du nom du fichier du logo pour la lettre>');
 
 // Nom et emplacement du fichier image contenant le titre
 //define('IMAGE_TITRE', '<chemin relatif suivi du nom du fichier image du titre>');
