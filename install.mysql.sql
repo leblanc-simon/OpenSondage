@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS `sondage` (
        `id_sondage_admin` CHAR(24),
        `date_fin` TIMESTAMP,
        `format` VARCHAR(2),
+       `max` INT NULL,
        `mailsonde` BOOLEAN DEFAULT '0',
        		   UNIQUE KEY (`id_sondage`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

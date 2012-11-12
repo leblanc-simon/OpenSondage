@@ -46,7 +46,6 @@ if (file_exists('bandeaux_local.php')) {
 } else {
   include_once('bandeaux.php');
 }
-
 //si les variables de session ne snot pas valides, il y a une erreur
 if (!issetAndNoEmpty('nom', $_SESSION) && !issetAndNoEmpty('adresse', $_SESSION) && !issetAndNoEmpty('commentaires', $_SESSION) && !issetAndNoEmpty('mail', $_SESSION)) {
   echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";

@@ -87,7 +87,7 @@ function ajouter_sondage()
   global $connect;
   
   $sql = 'INSERT INTO sondage
-          (id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde)
+          (id_sondage, commentaires, mail_admin, nom_admin, titre, id_sondage_admin, date_fin, format, mailsonde, max)
           VALUES (
           '.$connect->Param('id_sondage').',
           '.$connect->Param('commentaires').',
@@ -97,10 +97,11 @@ function ajouter_sondage()
           '.$connect->Param('id_sondage_admin').',
           FROM_UNIXTIME('.$date_fin.'),
           '.$connect->Param('format').',
-          '.$connect->Param('mailsonde').'
+          '.$connect->Param('mailsonde').',
+          '.$connect->Param('max').'
           )';
   $sql = $connect->Prepare($sql);
-  $res = $connect->Execute($sql, array($sondage, $_SESSION['commentaires'], $_SESSION['adresse'], $_SESSION['nom'], $_SESSION['titre'], $sondage_admin, $_SESSION['formatsondage'], $_SESSION['mailsonde']));
+  $res = $connect->Execute($sql, array($sondage, $_SESSION['commentaires'], $_SESSION['adresse'], $_SESSION['nom'], $_SESSION['titre'], $sondage_admin, $_SESSION['formatsondage'], $_SESSION['mailsonde'], $_SESSION['max']));
   
   $sql = 'INSERT INTO sujet_studs values ('.$connect->Param('sondage').', '.$connect->Param('choix').')';
   $sql = $connect->Prepare($sql);

@@ -129,11 +129,20 @@ $sql = 'SELECT * FROM user_studs WHERE id_sondage='.$connect->Param('numsondage'
 $sql = $connect->Prepare($sql);
 $user_studs = $connect->Execute($sql, array($numsondage));
 
+$sql = 'SELECT * FROM sondage WHERE id_sondage='.$connect->Param('numsondage');
+$sql = $connect->Prepare($sql);
+$sondage = $connect->Execute($sql, array($numsondage));
+$sondage = $sondage->GetAssoc()[$numsondage];
+$max = ($sondage["max"]>0)?$sondage["max"]:INF;
+
 $nbcolonnes = substr_count($dsondage->sujet, ',') + 1;
 if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]))) {
-  //Si le nom est bien entré
   if (issetAndNoEmpty('nom') === false) {
+    //Si le nom est bien entré
     $err |= NAME_EMPTY;
+  } else if ($user_studs->RecordCount() >= $max) {
+    //Si le nombre max n'est pas dépassé
+    $err |= NAME_TAKEN;
   }
   
   if(!is_error(NAME_EMPTY) && (!isset($_SERVER['REMOTE_USER']) || $_POST["nom"] == $_SESSION["nom"])) {
@@ -231,6 +240,7 @@ if($err != 0) {
   }
 }
 
+
 echo '<div class="presentationdate"> '."\n";
 
 //affichage du titre du sondage
@@ -247,6 +257,12 @@ if ($dsondage->commentaires) {
   $commentaires=nl2br(str_replace("\\","",$commentaires));
   echo $commentaires;
   echo '<br>'."\n";
+}
+
+if ($user_studs->RecordCount() >= $max) {
+    echo '<strong class="error">' .
+         _("Max number of answers has been reached.") .
+         "</strong>\n";
 }
 
 echo '<br>'."\n";
@@ -491,7 +507,11 @@ if (!isset($_SERVER['REMOTE_USER']) || !$user_mod) {
   if (isset($_SESSION['nom'])) {
     echo '<input type=hidden name="nom" value="'.$_SESSION['nom'].'">'.$_SESSION['nom']."\n";
   } else {
-    echo '<input type=text name="nom" maxlength="64">'."\n";
+    echo '<input ';
+    if ($user_studs->RecordCount() >= $max) {
+        echo 'disabled ';
+    }
+    echo 'type=text name="nom" maxlength="64">'."\n";
   }
   
   echo '</td>'."\n";
@@ -502,13 +522,18 @@ if (!isset($_SERVER['REMOTE_USER']) || !$user_mod) {
     if ( isset($_POST['choix'.$i]) && $_POST['choix'.$i] == '1' && is_error(NAME_EMPTY) ) {
       echo ' checked="checked"';
     }
+    if ($user_studs->RecordCount() >= $max) {
+        echo 'disabled ';
+    }
     
     echo '></td>'."\n";
   }
   
-  // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
-  echo '<td><input type="image" name="boutonp" value="' . _('Participate') . '" src="images/add-24.png"></td>'."\n";
-  echo '</tr>'."\n";
+  if ($user_studs->RecordCount() < $max) {
+      // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
+      echo '<td><input type="image" name="boutonp" value="' . _('Participate') . '" src="images/add-24.png"></td>'."\n";
+      echo '</tr>'."\n";
+  }
 }
 
 //determination de la meilleure date

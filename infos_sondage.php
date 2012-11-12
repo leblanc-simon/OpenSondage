@@ -47,7 +47,7 @@ if (file_exists('bandeaux_local.php')) {
 
 // On teste toutes les variables pour supprimer l'ensemble des warnings PHP
 // On transforme en entites html les données afin éviter les failles XSS
-$post_var = array('titre', 'nom', 'adresse', 'commentaires', 'studsplus', 'mailsonde', 'creation_sondage_date', 'creation_sondage_date_x', 'creation_sondage_autre', 'creation_sondage_autre_x',);
+$post_var = array('titre', 'nom', 'adresse', 'commentaires', 'studsplus', 'mailsonde', 'creation_sondage_date', 'creation_sondage_date_x', 'creation_sondage_autre', 'creation_sondage_autre_x', 'max');
 foreach ($post_var as $var) {
   if (isset($_POST[$var]) === true) {
     $$var = htmlentities($_POST[$var], ENT_QUOTES, 'UTF-8');
@@ -57,7 +57,7 @@ foreach ($post_var as $var) {
 }
 
 // On initialise egalement la session car sinon bonjour les warning :-)
-$session_var = array('titre', 'nom', 'adresse', 'commentaires', 'mailsonde', 'studsplus', );
+$session_var = array('titre', 'nom', 'adresse', 'commentaires', 'mailsonde', 'studsplus', 'max');
 foreach ($session_var as $var) {
   if (issetAndNoEmpty($var, $_SESSION) === false) {
     $_SESSION[$var] = null;
@@ -78,6 +78,7 @@ if (issetAndNoEmpty("creation_sondage_date") || issetAndNoEmpty("creation_sondag
   $_SESSION["nom"] = $nom;
   $_SESSION["adresse"] = $adresse;
   $_SESSION["commentaires"] = $commentaires;
+  $_SESSION["max"] = $max;
   
   unset($_SESSION["studsplus"]);
   if ($studsplus !== null) {
@@ -194,6 +195,15 @@ if (!$_SESSION["adresse"] && (issetAndNoEmpty('creation_sondage_date') || issetA
   print "<td><font color=\"#FF0000\">" . _("Enter an email address") . " </font></td>"."\n";
 } elseif ($erreur_adresse && (issetAndNoEmpty('creation_sondage_date') || issetAndNoEmpty('creation_sondage_autre') || issetAndNoEmpty('creation_sondage_date_x') || issetAndNoEmpty('creation_sondage_autre_x'))) {
   print "<td><font color=\"#FF0000\">" . _("The address is not correct! (You should enter a valid email address in order to receive the link to your poll)") . "</font></td>"."\n";
+}
+
+echo '</tr>'."\n";
+echo '<tr><td>'. _("Max number of answers: ") .'</td><td>';
+
+if (isset($_SERVER['REMOTE_USER'])) {
+  echo '<input type="hidden" name="max" size="40" maxlength="64" value="'.$_SESSION["max"].'">'.$_SESSION["max"].'</td>'."\n";
+} else {
+  echo '<input type="text" name="max" size="40" maxlength="64" value="'.$_SESSION["max"].'"></td>'."\n";
 }
 
 echo '</tr>'."\n";
