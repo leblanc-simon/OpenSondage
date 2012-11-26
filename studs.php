@@ -132,7 +132,8 @@ $user_studs = $connect->Execute($sql, array($numsondage));
 $sql = 'SELECT * FROM sondage WHERE id_sondage='.$connect->Param('numsondage');
 $sql = $connect->Prepare($sql);
 $sondage = $connect->Execute($sql, array($numsondage));
-$sondage = $sondage->GetAssoc()[$numsondage];
+$sondage=$sondage->GetAssoc();
+$sondage = $sondage[$numsondage];
 $max = ($sondage["max"]>0)?$sondage["max"]:INF;
 
 $nbcolonnes = substr_count($dsondage->sujet, ',') + 1;
