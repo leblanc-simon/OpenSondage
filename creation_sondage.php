@@ -105,6 +105,9 @@ function ajouter_sondage()
   
   $sql = 'INSERT INTO sujet_studs values ('.$connect->Param('sondage').', '.$connect->Param('choix').')';
   $sql = $connect->Prepare($sql);
+  $_SESSION["toutchoix"]=explode(',', $_SESSION["toutchoix"]);
+  sort($_SESSION["toutchoix"], SORT_NATURAL);
+  $_SESSION["toutchoix"]=implode(',', $_SESSION["toutchoix"]);
   $connect->Execute($sql, array($sondage, $_SESSION['toutchoix']));
   
   $message = _("This is the message you have to send to the people you want to poll. \nNow, you have to send this message to everyone you want to poll.");
