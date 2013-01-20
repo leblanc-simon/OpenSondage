@@ -66,7 +66,7 @@ bandeau_titre(_("Make your polls"));
 sous_bandeau();
 
 echo '<div class=corps>'."\n";
-echo '<p><b>'.NOMAPPLICATION.'<br>'. _("What is it about?") .'</b></p>';
+echo '<p><b>'.htmlentities(NOMAPPLICATION).'<br>'. _("What is it about?") .'</b></p>';
 echo '<p>'. _("Making polls to schedule meetings or events, quickly and easily. <br> You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays.") .'</p>'."\n".'<br>'."\n";
 echo '<div class="nouveau_sondage"><b>'. _("Make a poll") .'</b>' .
      '<span>' .
