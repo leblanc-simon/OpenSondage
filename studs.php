@@ -141,9 +141,12 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
   if (issetAndNoEmpty('nom') === false) {
     //Si le nom est bien entré
     $err |= NAME_EMPTY;
+  } else if (issetAndNoEmpty('email') === false) {
+    //Si l'email est bien entré
+    $err |= EMAIL_EMPTY;
   } else if ($user_studs->RecordCount() >= $max) {
     //Si le nombre max n'est pas dépassé
-    $err |= NAME_TAKEN;
+    $err |= MAX_ANSWERS;
   }
   
   if(!is_error(NAME_EMPTY) && (!isset($_SERVER['REMOTE_USER']) || $_POST["nom"] == $_SESSION["nom"])) {
@@ -169,17 +172,18 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
     }
 
     // Ecriture des choix de l'utilisateur dans la base
-    if (!is_error(NAME_TAKEN) && !is_error(NAME_EMPTY)) {
+    if (!is_error(NAME_TAKEN) && !is_error(NAME_EMPTY) && !is_error(EMAIL_EMPTY)) {
       
-      $sql = 'INSERT INTO user_studs (nom,id_sondage,reponses) VALUES ('.
+      $sql = 'INSERT INTO user_studs (nom,id_sondage,telephone,email,reponses) VALUES ('.
 		$connect->Param('nom').', '.
 		$connect->Param('numsondage').', '.
+		$connect->Param('telephone').', '.
+		$connect->Param('email').', '.
 		$connect->Param('nouveauchoix').')';
       $sql = $connect->Prepare($sql);
-      
-      // Todo : Il faudrait lever une erreur en cas d'erreur d'insertion
-      $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
 
+      // Todo : Il faudrait lever une erreur en cas d'erreur d'insertion
+      $connect->Execute($sql, array($nom, $numsondage, $_POST['téléphone'], $_POST['email'], $nouveauchoix));
       if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=="yes" || $dsondage->mailsonde=="true") {
         $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
         mail ("$dsondage->mail_admin",
@@ -209,6 +213,9 @@ if($err != 0) {
   echo '<div class="error"><ul>'."\n";
   if(is_error(NAME_EMPTY)) {
     echo '<li class="error">' . _("Enter a name !") . "</li>\n";
+  }
+  if(is_error(EMAIL_EMPTY)) {
+    echo '<li class="error">' . _("Please enter an email !") . "</li>\n";
   }
   if(is_error(NAME_TAKEN)) {
     echo '<li class="error">' .
@@ -269,7 +276,7 @@ if ($user_studs->RecordCount() >= $max) {
 echo '<br>'."\n";
 echo '</div>'."\n";
 
-echo '<form name="formulaire" action="studs.php"'.'#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+echo '<form name="formulaire" action="studs.php'.'#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 echo '<input type="hidden" name="sondage" value="' . $numsondage . '"/>';
 // Todo : add CSRF protection
 echo '<div class="cadre"> '."\n";
@@ -512,7 +519,10 @@ if (!isset($_SERVER['REMOTE_USER']) || !$user_mod) {
     if ($user_studs->RecordCount() >= $max) {
         echo 'disabled ';
     }
-    echo 'type=text name="nom" maxlength="64">'."\n";
+    echo 'type=text name="nom" maxlength="64" placeholder="Nom"><br/>';
+    echo '<input type="email" name="email" placeholder="Adresse e-mail"><br/>';
+    echo '<input name="téléphone" placeholder="Numéro de téléphone">';
+
   }
   
   echo '</td>'."\n";

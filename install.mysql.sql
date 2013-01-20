@@ -33,6 +33,8 @@ CREATE TABLE IF NOT EXISTS `user_studs` (
     `nom` VARCHAR(64) NOT NULL,
     `id_sondage` CHAR(16) NOT NULL,
     `reponses` text NOT NULL,
+    `email` varchar(255) NOT NULL,
+    `telephone` varchar(12) DEFAULT NULL,
     	     PRIMARY KEY (`id_users`),
 	     FOREIGN KEY (`id_sondage`) REFERENCES sondage(id_sondage) on delete cascade
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

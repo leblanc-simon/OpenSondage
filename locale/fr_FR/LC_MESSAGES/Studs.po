@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: Studs 0.6.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-02-23 16:15+0100\n"
-"PO-Revision-Date: 2011-02-23 16:16+0100\n"
-"Last-Translator: Raphaël Droz <raphael.droz@gmail.com>\n"
+"PO-Revision-Date: 2013-01-20 23:59+0100\n"
+"Last-Translator: Pierre Rudloff <rudloff@strasweb.fr>\n"
 "Language-Team: Guilhem Borghesi, Raphaël Droz\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -390,7 +390,7 @@ msgstr "Meilleur choix"
 #: adminstuds.php:924
 #: adminstuds.php:926
 msgid "for"
-msgstr "&agrave"
+msgstr "&agrave;"
 
 #: studs.php:534
 #: adminstuds.php:947
@@ -784,6 +784,9 @@ msgstr "Voir le sondage"
 #: admin/index.php:133
 msgid "Change the poll"
 msgstr "Modifier le sondage"
+
+msgid "Please enter an email !"
+msgstr "Veuillez entrer une adresse e-mail !"
 
 #~ msgid "Enter a name!"
 #~ msgstr "Vous n'avez pas saisi de nom !"
