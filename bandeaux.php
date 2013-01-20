@@ -52,7 +52,7 @@ function logo ()
 #le bandeau principal
 function bandeau_tete()
 {
-  echo '<div class="bandeau">'.NOMAPPLICATION.'</div>'."\n";
+  echo '<div class="bandeau">'.htmlentities(NOMAPPLICATION).'</div>'."\n";
 }
 
 
