@@ -118,7 +118,7 @@ function print_header($js = false, $nom_sondage = '')
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">';
   if (empty($nom_sondage) === false) {
     echo '
-    <title>'.$nom_sondage.' - '.NOMAPPLICATION.'</title>';
+    <title>'.$nom_sondage.' - '.htmlentities(NOMAPPLICATION).'</title>';
   } else {
     echo '
     <title>'.NOMAPPLICATION.'</title>';
@@ -200,14 +200,16 @@ function getUrlSondage($id, $admin = false)
 
 $connect=connexion_base();
 
-define('COMMENT_EMPTY',         0x0000000001);
-define('COMMENT_USER_EMPTY',    0x0000000010);
-define('COMMENT_INSERT_FAILED', 0x0000000100);
-define('NAME_EMPTY',            0x0000001000);
-define('NAME_TAKEN',            0x0000010000);
-define('NO_POLL',               0x0000100000);
-define('NO_POLL_ID',            0x0001000000);
-define('INVALID_EMAIL',         0x0010000000);
-define('TITLE_EMPTY',           0x0100000000);
-define('INVALID_DATE',          0x1000000000);
+define('COMMENT_EMPTY',         0x000000000100);
+define('COMMENT_USER_EMPTY',    0x000000001000);
+define('COMMENT_INSERT_FAILED', 0x000000010000);
+define('NAME_EMPTY',            0x000000100000);
+define('NAME_TAKEN',            0x000001000000);
+define('NO_POLL',               0x000010000000);
+define('NO_POLL_ID',            0x000100000000);
+define('INVALID_EMAIL',         0x001000000000);
+define('TITLE_EMPTY',           0x010000000000);
+define('INVALID_DATE',          0x100000000000);
+define('EMAIL_EMPTY',           0x000000000010);
+define('MAX_ANSWERS',           0x000000000001);
 $err = 0;

@@ -129,11 +129,24 @@ $sql = 'SELECT * FROM user_studs WHERE id_sondage='.$connect->Param('numsondage'
 $sql = $connect->Prepare($sql);
 $user_studs = $connect->Execute($sql, array($numsondage));
 
+$sql = 'SELECT * FROM sondage WHERE id_sondage='.$connect->Param('numsondage');
+$sql = $connect->Prepare($sql);
+$sondage = $connect->Execute($sql, array($numsondage));
+$sondage=$sondage->GetAssoc();
+$sondage = $sondage[$numsondage];
+$max = ($sondage["max"]>0)?$sondage["max"]:INF;
+
 $nbcolonnes = substr_count($dsondage->sujet, ',') + 1;
 if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]))) {
-  //Si le nom est bien entré
   if (issetAndNoEmpty('nom') === false) {
+    //Si le nom est bien entré
     $err |= NAME_EMPTY;
+  } else if (issetAndNoEmpty('email') === false) {
+    //Si l'email est bien entré
+    $err |= EMAIL_EMPTY;
+  } else if ($user_studs->RecordCount() >= $max) {
+    //Si le nombre max n'est pas dépassé
+    $err |= MAX_ANSWERS;
   }
   
   if(!is_error(NAME_EMPTY) && (!isset($_SERVER['REMOTE_USER']) || $_POST["nom"] == $_SESSION["nom"])) {
@@ -159,17 +172,18 @@ if (!is_error(NO_POLL) && (isset($_POST["boutonp"]) || isset($_POST["boutonp_x"]
     }
 
     // Ecriture des choix de l'utilisateur dans la base
-    if (!is_error(NAME_TAKEN) && !is_error(NAME_EMPTY)) {
+    if (!is_error(NAME_TAKEN) && !is_error(NAME_EMPTY) && !is_error(EMAIL_EMPTY)) {
       
-      $sql = 'INSERT INTO user_studs (nom,id_sondage,reponses) VALUES ('.
+      $sql = 'INSERT INTO user_studs (nom,id_sondage,telephone,email,reponses) VALUES ('.
 		$connect->Param('nom').', '.
 		$connect->Param('numsondage').', '.
+		$connect->Param('telephone').', '.
+		$connect->Param('email').', '.
 		$connect->Param('nouveauchoix').')';
       $sql = $connect->Prepare($sql);
-      
-      // Todo : Il faudrait lever une erreur en cas d'erreur d'insertion
-      $connect->Execute($sql, array($nom, $numsondage, $nouveauchoix));
 
+      // Todo : Il faudrait lever une erreur en cas d'erreur d'insertion
+      $connect->Execute($sql, array($nom, $numsondage, $_POST['téléphone'], $_POST['email'], $nouveauchoix));
       if ($dsondage->mailsonde || /* compatibility for non boolean DB */ $dsondage->mailsonde=="yes" || $dsondage->mailsonde=="true") {
         $headers="From: ".NOMAPPLICATION." <".ADRESSEMAILADMIN.">\r\nContent-Type: text/plain; charset=\"UTF-8\"\nContent-Transfer-Encoding: 8bit";
         mail ("$dsondage->mail_admin",
@@ -199,6 +213,9 @@ if($err != 0) {
   echo '<div class="error"><ul>'."\n";
   if(is_error(NAME_EMPTY)) {
     echo '<li class="error">' . _("Enter a name !") . "</li>\n";
+  }
+  if(is_error(EMAIL_EMPTY)) {
+    echo '<li class="error">' . _("Please enter an email !") . "</li>\n";
   }
   if(is_error(NAME_TAKEN)) {
     echo '<li class="error">' .
@@ -231,6 +248,7 @@ if($err != 0) {
   }
 }
 
+
 echo '<div class="presentationdate"> '."\n";
 
 //affichage du titre du sondage
@@ -249,10 +267,16 @@ if ($dsondage->commentaires) {
   echo '<br>'."\n";
 }
 
+if ($user_studs->RecordCount() >= $max) {
+    echo '<strong class="error">' .
+         _("Max number of answers has been reached.") .
+         "</strong>\n";
+}
+
 echo '<br>'."\n";
 echo '</div>'."\n";
 
-echo '<form name="formulaire" action="studs.php"'.'#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
+echo '<form name="formulaire" action="studs.php'.'#bas" method="POST" onkeypress="javascript:process_keypress(event)">'."\n";
 echo '<input type="hidden" name="sondage" value="' . $numsondage . '"/>';
 // Todo : add CSRF protection
 echo '<div class="cadre"> '."\n";
@@ -491,7 +515,14 @@ if (!isset($_SERVER['REMOTE_USER']) || !$user_mod) {
   if (isset($_SESSION['nom'])) {
     echo '<input type=hidden name="nom" value="'.$_SESSION['nom'].'">'.$_SESSION['nom']."\n";
   } else {
-    echo '<input type=text name="nom" maxlength="64">'."\n";
+    echo '<input ';
+    if ($user_studs->RecordCount() >= $max) {
+        echo 'disabled ';
+    }
+    echo 'type=text name="nom" maxlength="64" placeholder="Nom"><br/>';
+    echo '<input type="email" name="email" placeholder="Adresse e-mail"><br/>';
+    echo '<input name="téléphone" placeholder="Numéro de téléphone">';
+
   }
   
   echo '</td>'."\n";
@@ -502,13 +533,18 @@ if (!isset($_SERVER['REMOTE_USER']) || !$user_mod) {
     if ( isset($_POST['choix'.$i]) && $_POST['choix'.$i] == '1' && is_error(NAME_EMPTY) ) {
       echo ' checked="checked"';
     }
+    if ($user_studs->RecordCount() >= $max) {
+        echo 'disabled ';
+    }
     
     echo '></td>'."\n";
   }
   
-  // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
-  echo '<td><input type="image" name="boutonp" value="' . _('Participate') . '" src="images/add-24.png"></td>'."\n";
-  echo '</tr>'."\n";
+  if ($user_studs->RecordCount() < $max) {
+      // Affichage du bouton de formulaire pour inscrire un nouvel utilisateur dans la base
+      echo '<td><input type="image" name="boutonp" value="' . _('Participate') . '" src="images/add-24.png"></td>'."\n";
+      echo '</tr>'."\n";
+  }
 }
 
 //determination de la meilleure date

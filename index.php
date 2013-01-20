@@ -51,7 +51,7 @@ echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">'."\n";
 echo '<html>'."\n";
 echo '<head>'."\n";
 echo '<meta http-equiv="Content-Type" content="text/html; charset=utf-8">'."\n";
-echo '<title>'.NOMAPPLICATION.'</title>'."\n";
+echo '<title>'.htmlentities(NOMAPPLICATION).'</title>'."\n";
 echo '<link rel="stylesheet" type="text/css" href="style.css">'."\n";
 echo '</head>'."\n";
 echo '<body>'."\n";
@@ -66,7 +66,7 @@ bandeau_titre(_("Make your polls"));
 sous_bandeau();
 
 echo '<div class=corps>'."\n";
-echo '<p><b>'.NOMAPPLICATION.'<br>'. _("What is it about?") .'</b></p>';
+echo '<p><b>'.htmlentities(NOMAPPLICATION).'<br>'. _("What is it about?") .'</b></p>';
 echo '<p>'. _("Making polls to schedule meetings or events, quickly and easily. <br> You can also run polls to determine what will be your next meeting place, the meeting topic or anything like the country you would like to visit during your next holidays.") .'</p>'."\n".'<br>'."\n";
 echo '<div class="nouveau_sondage"><b>'. _("Make a poll") .'</b>' .
      '<span>' .

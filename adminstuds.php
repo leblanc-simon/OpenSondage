@@ -891,7 +891,7 @@ while ($data = $user_studs->FetchNextObject(false)) {
   
   //affichage du nom
   $nombase=str_replace("°","'",$data->nom);
-  echo '<td class="nom">'.$nombase.'</td>'."\n";
+  echo '<td class="nom">'.$nombase.'<br><small>'.$data->email.'</small><br><small>'.$data->telephone.'</small></td>'."\n";
   
   //si la ligne n'est pas a changer, on affiche les données
   if (!$testligneamodifier) {
