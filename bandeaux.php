@@ -69,7 +69,7 @@ function liste_lang()
   
   $str = '';
   foreach ($ALLOWED_LANGUAGES as $k => $v ) {
-    $str .= '<a href="' . $_SERVER['PHP_SELF'] . '?lang=' . $k . '">' . $v . '</a>' . "\n" ;
+    $str .= '<a href="' . get_server_name() . '?lang=' . $k . '">' . $v . '</a>' . "\n" ;
   }
   
   return $str;
