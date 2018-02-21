@@ -1,14 +1,14 @@
 {
-    "name": "framasoft/framadate",
+    "name": "leblanc-simon/opensondage",
     "description": "Application to facilitate the schedule of events or classic polls",
-    "homepage": "https://framadate.org/",
-    "keywords": ["poll", "framadate"],
+    "homepage": "https://opensondage.leblanc.io/",
+    "keywords": ["poll", "opensondage"],
     "version": "0.9.0",
     "license": "CECILL-B",
 
     "type": "project",
     "support": {
-        "issues": "https://framagit.org/framasoft/framadate/issues"
+        "issues": "https://github.com/leblanc-simon/OpenSondage/issues"
     },
     "authors": [
         {

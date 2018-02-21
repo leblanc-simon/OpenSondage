@@ -1,46 +1,12 @@
-# Présentation du projet
-
-![Gitlab](https://framagit.org/assets/logo-black-f52905a40830b30aa287f784b537c823.png)[https://framagit.org](https://framagit.org)
-
-![English](https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Flag_of_the_United_Kingdom.svg/20px-Flag_of_the_United_Kingdom.svg.png) **Framasoft uses GitLab** for the development of its free softwares. Our Github repositories are only mirrors.
-If you want to work with us, **fork us on [framagit.org](https://framagit.org)**. (no registration needed, you can sign in with your Github account)
-
-![Français](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/20px-Flag_of_France.svg.png) **Framasoft utilise GitLab** pour le développement de ses logiciels libres. Nos dépôts Github ne sont que des mirroirs.
-Si vous souhaitez travailler avec nous, **forkez-nous sur [framagit.org](https://framagit.org)**. (l'inscription n'est pas nécessaire, vous pouvez vous connecter avec votre compte Github)
-
----
-
 # Installation
 
-Un fichier est dédié à l'installation de framadate : [INSTALL.md](INSTALL.md).
+Un fichier est dédié à l'installation de OpenSondage : [INSTALL.md](INSTALL.md).
 
 # Comment contribuer
 
-## De votre côté
-
-1. Créer un compte sur [https://framagit.org](https://framagit.org)
-1. Créer un fork du projet principal : [Créer le fork](https://framagit.org/framasoft/framadate/forks/new)
-1. Créer une branche nommée feature/[Description]
-    * Où [Description] est une description en anglais très courte de ce qui va être fait
-1. Faire des commits dans votre branche
-1. Pusher la branche sur votre fork
-1. Demander une merge request
-
-## La suite se passe de notre côté
-
-1. Quelqu'un relira votre travail
-    * Essayez de rendre ce travail plus facile en organisant vos commits
-1. S'il y a des remarques sur le travail, le relecteur fera des commentaires sur la merge request
-1. Si la merge request lui semble correcte il peut merger votre travail avec la branche **develop**
-
-## Corrections suite à une relecture
-
-La relecture de la merge request peut vous amener à faire des corrections.
-Vous pouvez faire ces corrections dans votre branche, ce qui aura pour effet de les ajouter à la merge request.
-
 ## Comprendre le code
 
-Un fichier est dédié à l'appréhension du code de framadate : [Document technique](doc/TECHNICAL.md).
+Un fichier est dédié à l'appréhension du code de OpenSondage : [Document technique](doc/TECHNICAL.md).
 
 # Traductions
 
@@ -60,9 +26,9 @@ PostgreSQL ou MySQL
 
 ---
 
-Framadate est un fork du projet [STUdS](https://sourcesup.cru.fr/projects/studs/), il motorise framadate.org pour framasoft.org
+OpenSondage est un fork du projet [STUdS](https://sourcesup.cru.fr/projects/studs/)
 
-Les auteurs principaux de Framadate sont :
+Les auteurs principaux de OpenSondage sont :
 * Simon LEBLANC
 * Pierre-Yves GOSSET
 
@@ -114,3 +80,4 @@ find a copy of this license in the file LICENSE.
 
     Mai 2010
     Raphaël DROZ, raphael.droz@gmail.com
+

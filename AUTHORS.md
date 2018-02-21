@@ -1,5 +1,7 @@
+# [OpenSondage](https://opensondage.leblanc.io)
+* Simon Leblanc (development)
+
 # [Framasoft](http://framadate.org)
-* Simon Leblanc (development), 
 * Pierre-Yves Gosset (development, graphism)
 * Pascal Chevrel (development)
 * Armony Altinier (accessibility)

@@ -1,4 +1,7 @@
-# Changelog de framadate
+# Changelog d'OpenSondage
+
+## Version 1.0.1
+    - Récupération des améliorations faites sur Framadate pour les remettre sur le premier fork de STUdS
 
 ## Version 1.0 (Erik - Markus - Ecmu - Julien - Imre - Luc - Pierre - Antonin - Olivier)
     - Amélioration : Conserver les votes en cours lors que l'utilisateur envoie un commentaire
