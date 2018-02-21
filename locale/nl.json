@@ -135,8 +135,12 @@
         "Remove password": "Wachtwoord verwijderen"
     },
     "Poll results": {
-        "Votes of the poll": "Stemmen",
         "Edit the line: %s": "Bewerk regel: %s",
+        "Password protected": "NL_Protégé par mot de passe",
+        "Votes protected by password": "NL_Votes protégés par mot de passe",
+        "No password": "NL_Pas de mot de passe",
+        "Remove password": "NL_Supprimer le mot de passe",
+        "Votes of the poll": "Stemmen",
         "Remove the line:": "Verwijder regel:",
         "Vote no for": "Stem ‘nee’ voor",
         "Vote yes for": "Stem ‘ja’ voor",
@@ -419,7 +423,7 @@
         "The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.": "De map voor compilatie van sjablonen (%s) bestaat niet in \"%s\". Probeer de installatie opnieuw.",
         "The template compile directory (%s) is not writable.": "De map voor compilatie van sjablonen (%s) is niet schrijfbaar.",
         "The template compile directory (%s) is writable.": "De map voor compilatie van sjablonen (%s) is schrijfbaar.",
-        "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "De map van het configuratiebestand (%s) is niet schrijfbaar en het configuratiebestand (%s) bestaat niet.",
+        "The config file directory (%s) is not writable and the config file (%s) does not exists.": "De map van het configuratiebestand (%s) is niet schrijfbaar en het configuratiebestand (%s) bestaat niet.",
         "The config file exists.": "Het configuratiebestand bestaat.",
         "The config file directory (%s) is writable.": "De map van het configuratiebestand (%s) is schrijfbaar.",
         "OpenSSL extension loaded.": "PHP OpenSSL extensie opgeladen.",

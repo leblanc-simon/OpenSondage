@@ -5,7 +5,6 @@
     "keywords": ["poll", "opensondage"],
     "version": "0.9.0",
     "license": "CECILL-B",
-
     "type": "project",
     "support": {
         "issues": "https://github.com/leblanc-simon/OpenSondage/issues"
@@ -60,7 +59,8 @@
         "o80/i18n": "dev-develop",
         "phpmailer/phpmailer": "^5.2",
         "ircmaxell/password-compat": "dev-master",
-        "roave/security-advisories": "dev-master"
+        "roave/security-advisories": "dev-master",
+        "erusev/parsedown": "1.6.0"
     },
 
     "require-dev": {

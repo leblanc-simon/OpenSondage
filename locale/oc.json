@@ -38,6 +38,7 @@
         "Search": "Cercar",
         "Creation date:": "Data de creacion :",
         "Caption": "Legenda",
+        "Markdown": "Markdown",
         "ASTERISK": "*"
     },
     "Date": {
@@ -132,7 +133,9 @@
         "Password protected": "Protegit per senhal",
         "Votes protected by password": "Vòtes protegits per senhal",
         "No password": "Pas cap de senhal",
-        "Remove password": "Levar lo senhal"
+        "Remove password": "Levar lo senhal",
+        "Rich editor": "OC_Editeur avancé",
+        "Simple editor": "OC_Editeur simple"
     },
     "Poll results": {
         "Votes of the poll": "Vòtes del sondatge",
@@ -247,7 +250,10 @@
         "Password confirmation": "Confirmacion",
         "Permissions": "Permissions",
         "Optional parameters": "Paramètres opcionals",
-        "Go to step 2": "Anar a l’etapa 2"
+        "Go to step 2": "Anar a l’etapa 2",
+        "To make the description more attractive, you can use the Markdown format.": "OC_Afin de rendre le descriptif de ce sondage plus attractif, vous pouvez utiliser le formatage Markdown.",
+        "You can enable or disable the editor at will.": "OC_Vous pouvez activer ou désactiver l'éditeur à votre guise.",
+        "More informations here:": "OC_Plus d'informations ici :"
     },
     "Step 2": {
         "Back to step 1": "Tornar a l’etapa 1",
@@ -419,7 +425,7 @@
         "The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.": "Lo dorsièr de compilacion dels modèls (%s) existís pas dins \"%s\". Ensajatz lo processús d’installacion tornamai.",
         "The template compile directory (%s) is not writable.": "Lo dorsièr de compilacion dels modèls (%s) es pas accessible en escritura.",
         "The template compile directory (%s) is writable.": "Lo dorsièr de compilacion dels modèls (%s) es accessible en escritura.",
-        "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "Lo dorsièr del fichièr de configuracion (%s) es pas accessible en escritura e lo fichièr de configuracion (%s) existís pas.",
+        "The config file directory (%s) is not writable and the config file (%s) does not exists.": "Lo dorsièr del fichièr de configuracion (%s) es pas accessible en escritura e lo fichièr de configuracion (%s) existís pas.",
         "The config file exists.": "Lo fichièr de configuracion existís.",
         "The config file directory (%s) is writable.": "Lo dorsièr del fichièr de configuracion (%s) es accessible en escritura.",
         "OpenSSL extension loaded.": "L’extension PHP OpenSSL es cargada.",

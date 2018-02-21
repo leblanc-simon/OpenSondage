@@ -38,6 +38,7 @@
         "Search": "Cercare",
         "Creation date:": "Data di creazione:",
         "Caption": "Titolo",
+        "Markdown": "Markdown",
         "ASTERISK": "*"
     },
     "Date": {
@@ -132,7 +133,9 @@
         "Password protected": "Protetto da una password",
         "Votes protected by password": "Voti protetti da una password",
         "No password": "Nessuna password",
-        "Remove password": "Eliminare la password"
+        "Remove password": "Eliminare la password",
+        "Rich editor": "IT_Editeur avancé",
+        "Simple editor": "IT_Editeur simple"
     },
     "Poll results": {
         "Votes of the poll": "Voti del sondaggio ",
@@ -247,7 +250,10 @@
         "Password confirmation": "Conferma della password",
         "Permissions": "Permessi",
         "Optional parameters": "Parametri opzionali",
-        "Go to step 2": "Andare al punto 2"
+        "Go to step 2": "Andare al punto 2",
+        "To make the description more attractive, you can use the Markdown format.": "IT_Afin de rendre le descriptif de ce sondage plus attractif, vous pouvez utiliser le formatage Markdown.",
+        "You can enable or disable the editor at will.": "IT_Vous pouvez activer ou désactiver l'éditeur à votre guise.",
+        "More informations here:": "IT_Plus d'informations ici :"
     },
     "Step 2": {
         "Back to step 1": "Torna al punto 1",
@@ -419,7 +425,7 @@
         "The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.": "IT_The template compile directory (%s) doesn't exist in \"%s\". Retry the installation process.",
         "The template compile directory (%s) is not writable.": "IT_Le dossier de compilation des templates (%s) n'est pas accessible en écriture.",
         "The template compile directory (%s) is writable.": "IT_Le dossier de compilation des templates (%s) est accessible en écriture.",
-        "The config file directory (%s) is not writable and the config file (%s) dos not exists.": "IT_Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'éxiste pas.",
+        "The config file directory (%s) is not writable and the config file (%s) does not exists.": "IT_Le dossier du fichier de configuration (%s) n'est pas accessible en écriture et le fichier de configuration (%s) n'existe pas.",
         "The config file exists.": "IT_Le fichier de configuration existe.",
         "The config file directory (%s) is writable.": "IT_Le dossier du fichier de configuration (%s) est accessible en écriture.",
         "OpenSSL extension loaded.": "IT_L'extension PHP OpenSSL est chargée.",
